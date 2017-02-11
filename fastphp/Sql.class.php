@@ -12,7 +12,7 @@ class Sql
          $this->_prefix=$dbConfig['prefix'];
    }
    //实例化数据库
-    public function connet($dbConfig)
+    protected function connet($dbConfig)
    {
       try{
          $dsn= sprintf("mysql:host=%s;dbname=%s;charset=utf8",
@@ -62,11 +62,27 @@ class Sql
     * [errorExport sql语句错误处理]
     * @return [type] [description]
     */
-   public function errorExport($sql)
-   {
+   protected function errorExport($sql)
+   {  
       $errorInfo=$this->_dbHandle->errorInfo();
       echo "<h1>Error:{$errorInfo[1]}!</h1><h3>{$errorInfo[2]}!</h3><h4
       style='color:red;'>SQL: {$sql}</h4>";
+   }
+   /**
+    * [errorExport 数组转字符串]
+    * @return [type] [description]
+    */
+   protected function arrayInStr($data=[])
+   {
+      if($data == '' && !is_array($data)) return false;
+      $str='';
+      foreach ($data as $key => $value) {
+          if(is_string($value) || is_float($value)){
+           $value="'".$value."'";
+         }
+         $str.=$key.'='.$value.',';
+       } 
+       return substr($str, 0,-1);
    }
 
 }
