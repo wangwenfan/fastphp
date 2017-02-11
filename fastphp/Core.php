@@ -118,7 +118,7 @@ class Core
          include $models;
       } else {
          //错误信息
-         echo 'Is Errors !';
+         echo 'Is Errors,自动加载失败!';
       }
 
     }

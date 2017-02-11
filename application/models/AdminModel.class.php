@@ -3,7 +3,8 @@ class AdminModel extends Model
 {
     public function test()
     {
-        $cc=$this->delete(['id'=>1]);
+        // $cc=$this->insert(['username'=>'wangwenfan','password'=>123134123]);
+        $cc=$this->select();
         P($cc);die;
         
     }
